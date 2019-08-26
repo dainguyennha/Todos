@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    background: #E4E7EB !important;
+}
+
+.grid-on{
+  display: grid;
+}
+.display-none{
+  display: none;
+}

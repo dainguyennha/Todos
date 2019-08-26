@@ -1,0 +1,129 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
+import { Params } from "@angular/router";
+import { TaskService } from "../services/task.service";
+import { FormBuilder, FormArray } from "@angular/forms";
+import * as $ from 'jquery';
+import { Task } from "../models/task.model";
+import { Item } from "../models/item.model";
+
+@Component({
+  selector: 'app-item',
+  templateUrl: './item.component.html',
+  styleUrls: ['./item.component.css']
+})
+export class ItemComponent implements OnInit {
+
+  task_id = 0;
+  task;
+  items;
+  
+  taskForm = this.fb.group({
+    title: [''],
+    description: [''],
+    itemForm: this.fb.array([
+    ]),
+    newItemForm:[''] 
+      
+  })
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private taskService: TaskService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      console.log(this.taskForm.controls);
+      this.itemForm.controls = [];
+      this.taskService.getTask(params.id).subscribe(task => {
+
+        this.task = task.task;
+        this.items = task.items;
+
+        this.taskForm.controls['description'].setValue(task.task.description);
+        this.taskForm.controls['title'].setValue(task.task.title);
+
+        task.items.forEach(item => {
+          this.itemForm.push(this.fb.group({
+            id: [item.id],
+            isChecked: [item.checked],
+            description: [item.description]
+          }))
+        })
+      });
+    });
+  }
+  updateValue(){
+    console.log(this.taskForm.value);
+    if (this.checkChangeTask()){
+      var task = new Task(this.task.id, this.taskForm.value.title, this.taskForm.value.description, true); 
+      this.taskService.updateTask(this.task.id, task).subscribe(res => {
+        console.log(res);
+        this.taskForm.controls['description'].setValue(res.description);
+        this.taskForm.controls['title'].setValue(res.title);
+      });
+    }
+    var tempChangeItem = this.checkChangeItem();
+
+    if (tempChangeItem != -1){
+      var newItem = this.taskForm.value.itemForm[tempChangeItem];
+      var item = new Item(newItem.description, newItem.isChecked);
+      this.taskService.updateItem(newItem.id, item).subscribe(res =>{
+        console.log(res);
+        this.items[tempChangeItem].description = res.description;
+        this.items[tempChangeItem].checked = res.checked;
+      })
+    }
+
+
+    if (this.checkChangeNewItem()){
+      this.taskService.createItem(this.task.id, {description: this.taskForm.value.newItemForm}).subscribe(res => {
+         this.itemForm.push(this.fb.group({
+            id: [res.id],
+            isChecked: [res.checked],
+            description: [res.description]
+          }))
+        this.items.push(res);
+        this.taskForm.controls['newItemForm'].setValue("");
+        
+      })
+    }
+  }
+
+  checkChangeTask(): boolean{
+    return this.taskForm.value.title != this.task.title || this.taskForm.value.description != this.task.description;
+  }
+
+  checkChangeItem(): number{
+    var temp = -1;
+    this.items.forEach((item, index) => {
+      if(item.checked != this.taskForm.value.itemForm[index].isChecked || item.description != this.taskForm.value.itemForm[index].description){
+        temp = index;
+    console.log("item thay đổi: ", temp);
+      }
+    })
+    return temp;
+  }
+  checkChangeNewItem(): boolean{
+    console.log(this.taskForm.value.newItemForm);
+    return this.taskForm.value.newItemForm.length != 0;
+  }
+
+  onSelected(item){
+  }
+
+  delItem(id){
+    var delItemId = this.items[id].id
+    this.taskService.delItem(delItemId).subscribe(res =>{
+      console.log(res['deletedItem']);
+      this.items.splice(res['deletedItem'].id, 1);
+      this.itemForm.removeAt(id);
+      console.log(this.items);
+    })
+  }
+
+  get itemForm(){
+    return this.taskForm.get('itemForm') as FormArray;
+  }
+}

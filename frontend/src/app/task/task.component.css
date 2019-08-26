@@ -1,0 +1,155 @@
+.checkbox-wrap {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    width: 30px;
+    clear: both;
+    margin-top: 10px;
+    margin-right: 30px;
+    margin-left: 15px;
+}
+
+.task {
+    width: 100%;
+    height: 70px;
+    padding-top: 9px;
+    border-width: 0 0 1px 0;
+    border-bottom: 1px solid #E4E7EB;
+    margin: 0;
+    background: none;
+    transition: all 0.2s;
+}
+
+.active {
+    background: #E4E7EB;
+    outline: none;
+}
+
+.task:hover {
+    background: #E4E7EB;
+}
+
+.task:focus-within {}
+
+.checkmark {
+    position: absolute;
+    border: 1px solid #5ED0FA;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+.checkbox-wrap:hover input~.checkmark {
+    background: #B3ECFF;
+}
+
+.checkbox-wrap input:checked~.checkmark {
+    background: #2BB0ED;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-wrap input:checked~.checkmark:after {
+    display: block;
+}
+
+.checkbox-wrap .checkmark:after {
+    left: 11px;
+    top: 5px;
+    width: 8px;
+    height: 15px;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    transform: rotate(45deg);
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    display: none;
+}
+
+.content {
+    float: left;
+    width: 70%;
+}
+
+.content input[type="text"] {
+    width: 100%;
+    height: 50px;
+    background: none;
+    border: none;
+    font-size: 18px;
+}
+
+.content input[type="text"]:focus {
+    outline: none;
+}
+
+.title {
+    text-align: left;
+    font-size: 18px;
+}
+
+.title p {
+    margin: 0;
+}
+
+.des {
+    color: #7B8794;
+    text-align: left;
+}
+
+.des p {
+    margin: 0;
+}
+
+.add-task {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    width: 30px;
+    color: ;
+    clear: both;
+    margin-top: 10px;
+    margin-right: 18px;
+    margin-left: 16px;
+    color: #5ED0FA;
+    font-size: 25px;
+}
+
+.del-task-btn {
+    width: fit-content;
+    float: right;
+    margin: 10px;
+}
+
+.del-task-btn button {
+    background: none;
+    border: none;
+    color: #5ED0FA;
+    font-size: 25px;
+    transition: all 0.2s;
+}
+
+.del-task-btn button:hover {
+    color: #F86A6A;
+}
+
+.flex-task {
+    display: flex;
+}
+
+.del-task-bn {
+    width: 36px;
+    float: right;
+    margin: 10px;
+}
+

@@ -1,0 +1,10 @@
+<div class="tasks-wrap">
+    <div class="tasks-task">
+        <div class="tasks">
+            <app-task (delTaskEvent)="receivedTask($event)"></app-task>
+        </div>
+        <div class="task-wrap display-none">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

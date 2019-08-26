@@ -1,0 +1,214 @@
+.checkbox-item-wrap {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    clear: both;
+    margin-top: 17px;
+    margin-right: 35px;
+    margin-left: 15px;
+}
+
+.checkmark-item {
+    position: absolute;
+    border: 1px solid #5ED0FA;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+.checkbox-item-wrap:hover input~.checkmark-item {
+    background: #B3ECFF;
+}
+
+.checkbox-item-wrap input:checked~.checkmark-item {
+    background: #2BB0ED;
+}
+
+.checkmark-item:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-item-wrap input:checked~.checkmark-item:after {
+    display: block;
+}
+
+.checkbox-item-wrap .checkmark-item:after {
+    left: 8px;
+    top: 3px;
+    width: 8px;
+    height: 14px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    display: none;
+}
+
+.des {
+    overflow: hidden;
+    width: 80%;
+    border: none;
+    color: #7B8794;
+    background: transparent;
+}
+
+.des:focus {
+    outline: none;
+}
+
+.items {
+    transition: all 0.2s;
+    border-bottom: 1px solid #E4E7EB;
+    position: relative;
+    text-align: left;
+    background: white;
+    -webkit-animation-name: ttb;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s;
+    /* Safari 4.0 - 8.0 */
+    animation-name: ttb;
+    animation-duration: 1.3s;
+
+}
+
+.items:hover {
+    background: #F7F7F7;
+}
+
+.items:focus-within {
+    background: #F7F7F7;
+}
+
+.add-edit {
+    font-size: 20px;
+    /* top: 18px; */
+    /* width: 31px; */
+    display: block;
+    float: left;
+    color: #5ED0FA;
+    margin: 17px 0 0 18px;
+}
+
+.add-item:hover {
+    background: #F7F7F7;
+}
+
+.add-item:focus-within {
+    background: #F7F7F7;
+}
+
+.add-item {
+    border-bottom: 1px solid #E4E7EB;
+    background: white;
+}
+
+.task-content {
+    width: 94%;
+    margin: 0 3%;
+    background: white;
+    height: 100%;
+    position: relative;
+    -webkit-animation-name: ttb;
+    /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s;
+    /* Safari 4.0 - 8.0 */
+    animation-name: ttb;
+    animation-duration: 0.7s;
+
+}
+
+.task-content-header{
+      border-bottom: 1px solid #E4E7EB;
+}
+
+.task-content-header input[type="text"] {
+    font-size: 22px;
+    width: 90%;
+    border: none;
+    margin-top: 10px;
+}
+
+.task-content-header input[type="text"]:focus {
+    outline: none;
+}
+
+.del-item-btn {
+    position: absolute;
+    margin-top: 16px;
+    margin-right: 0px;
+    border: none;
+    margin-left: 10px;
+    color: #5ED0FA;
+    background: none;
+    font-size: 20px;
+    transition: all 0.2s;
+}
+
+.del-item-btn:hover {
+    color: #F86A6A;
+}
+
+.del-task-btn {
+    position: absolute;
+    ;
+    background: white;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    background: whitesmoke;
+}
+
+.del-task-btn button {
+    background: none;
+    border: none;
+    color: #5ED0FA;
+    font-size: 25px;
+    transition: all 0.2s;
+    position: absolute;
+    right: 0;
+}
+
+.del-task-btn button:hover {
+    color: #F86A6A;
+}
+
+.item-wrap {
+    overflow: auto;
+}
+.item-wrap::-webkit-scrollbar{
+  width: 0;
+}
+@-webkit-keyframes ttb {
+    from {
+        left: 100%;
+        opacity: 0.5;
+    }
+    to {
+        left: 0%;
+        opacity: 1;
+    }
+}
+
+/* Standard syntax */
+
+@keyframes ttb {
+    from {
+        left: 100%;
+        opacity: 0.5;
+    }
+    to {
+        left: 0%;
+        opacity: 1;
+    }
+}
+
+

@@ -1,0 +1,28 @@
+<div class="task-content" [formGroup]="taskForm" (change)="updateValue()">
+    <div class="task-content-header">
+        <input type="text" name="" id="" formControlName="title">
+        <textarea name="des" class="des" placeholder="Mô tả..." formControlName="description"
+            oninput='this.style.height = "26px";this.style.height = this.scrollHeight + "px"'></textarea>
+    </div>
+
+    <div class="item-wrap">
+        <div formArrayName="itemForm">
+            <div class="items" [formGroupName]="i" *ngFor="let item of itemForm.controls; let i=index">
+                <input type="hidden" formControlName="id">
+                <label class="checkbox-item-wrap">
+                <input type="checkbox" name="item" id="item" formControlName="isChecked">
+                <div class="checkmark-item"></div>
+            </label>
+                <textarea name="des" class="des" (click)="onSelected(item)" placeholder="Mô tả..."
+                    oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+                    formControlName="description"></textarea>
+                <button type="button" class="del-item-btn" (click)="delItem(i)"><i class="far fa-trash-alt"></i></button>
+            </div>
+        </div>
+        <div class="add-item">
+            <i class="fas fa-plus add-edit"></i>
+            <textarea name="des" class="des" formControlName="newItemForm" placeholder="Thêm bước tiếp theo..."
+                oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'></textarea>
+        </div>
+    </div>
+</div>

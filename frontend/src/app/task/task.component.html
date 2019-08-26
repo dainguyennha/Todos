@@ -1,0 +1,31 @@
+<div class="flex-task" *ngFor="let task of tasks; let i=index">
+    <div class="task" routerLink="/task/{{task?.id}}">
+        <label class="checkbox-wrap">
+      <input type="checkbox" id="" [checked]="task?.checked" disabled >
+    <span class="checkmark"></span>
+  </label>
+        <div class="content">
+            <div class="title">
+                <p>{{task?.title}}</p>
+            </div>
+            <div class="des">
+              <p>Hoàn thành {{task?.checked_item}}/{{task?.total_item}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="del-task-btn">
+        <button type="button" (click)="delTask(i)"><i class="far fa-trash-alt"></i></button>
+    </div>
+</div>
+<div class="flex-task">
+    <div class="task">
+        <label class="add-task">
+      <i class="fas fa-plus add-edit"></i>
+  </label>
+        <div class="content" [formGroup]="newTaskForm">
+            <input type="text" formControlName="newTask" (change)="addNewTask()" placeholder="Thêm tác vụ...">
+        </div>
+    </div>
+    <div class="del-task-bn">
+    </div>
+</div>

@@ -1,0 +1,138 @@
+.tasks-task {
+    height: 83vh;
+    grid-template-columns: 66% 34%;
+    border: 1px solid #E1E1DB;
+}
+
+.tasks {
+    height: 100%;
+    overflow: auto;
+    padding: 17px 12px;
+    background: #fff;
+    position: relative;
+}
+
+.tasks::-webkit-scrollbar {
+    width: 0;
+}
+
+.task-wrap {
+    height: 100%;
+    background: #E4E7EB;
+    text-align: center;
+    overflow: auto;
+}
+
+.task-wrap::-webkit-scrollbar {
+    width: 0;
+}
+
+.task-content {
+    width: 94%;
+    margin: 0 3%;
+    background: white;
+}
+
+.task-content-header input[type="text"] {
+    font-size: 22px;
+    width: 90%;
+    border: none;
+    margin-top: 10px;
+}
+
+.task-content-header input[type="text"]:focus {
+    outline: none;
+}
+
+.des {
+    overflow: hidden;
+    width: 83%;
+    border: none;
+    color: #7B8794;
+}
+
+.des:focus {
+    outline: none;
+}
+
+.title h3 {
+    margin: 3vh 0;
+}
+
+.checkbox-item-wrap {
+    position: relative;
+    cursor: pointer;
+    float: left;
+    clear: both;
+    margin-top: 10px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+
+.checkmark-item {
+    position: absolute;
+    border: 1px solid #5ED0FA;
+    border-radius: 50%;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+}
+
+.checkbox-item-wrap:hover input~.checkmark-item {
+    background: #B3ECFF;
+}
+
+.checkbox-item-wrap input:checked~.checkmark-item {
+    background: #2BB0ED;
+}
+
+.checkmark-item:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-item-wrap input:checked~.checkmark-item:after {
+    display: block;
+}
+
+.checkbox-item-wrap .checkmark-item:after {
+    left: 8px;
+    top: 3px;
+    width: 8px;
+    height: 14px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    display: none;
+}
+
+.tasks-wrap {
+    margin: 34px;
+}
+
+.item-wrap {
+    padding: 0 10px 10px 10px;
+}
+
+.add-task-edit {
+    font-size: 20px;
+    display: block;
+    float: right;
+    color: #5ED0FA;
+}
+
+.tool {
+    width: 97%;
+    position: absolute;
+    margin: 13px 0;
+    height: 20px;
+    bottom: 0;
+}
