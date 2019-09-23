@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
   def create
     @task = Task.find_by id: params[:id]
-    if @task.items.create description: params[:description]
+    @item = @task.items.create description: params[:description]
+    if @item
       if @task.updateStatus @task.items.where(checked: true).count, @task.items.count
-        render json: @task.items.last
+        render json: @item
       end
     else
       render json: {status: false}

@@ -11,14 +11,15 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find_by id: params[:id]
-    
-    if @task.updateTask params["title"], params["description"]
-      render json: @task
-    else
-      render json: {status: false}
-    end
-  end 
-
+    if @task.nil?
+      render nothing: true, status: 404
+    elsif @task.update_attributes task_params 
+      render json: @task 
+    else 
+      render {}
+    end 
+  end
+  
   def create
     newTask = Task.create title: params[:title]
     if newTask
@@ -37,4 +38,8 @@ class TasksController < ApplicationController
     end
   end
 
-end
+  private
+  def task_params
+    params.require(:task).permit :title, :description
+  end
+end 
