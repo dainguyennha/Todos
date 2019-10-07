@@ -71,13 +71,10 @@ input[type="checkbox"] {
     position: relative;
     text-align: left;
     background: white;
-    -webkit-animation-name: ttb;
     /* Safari 4.0 - 8.0 */
     -webkit-animation-duration: 4s;
     /* Safari 4.0 - 8.0 */
-    animation-name: ttb;
     animation-duration: 1.3s;
-
 }
 
 .items:hover {
@@ -123,11 +120,10 @@ input[type="checkbox"] {
     /* Safari 4.0 - 8.0 */
     animation-name: ttb;
     animation-duration: 0.7s;
-
 }
 
-.task-content-header{
-      border-bottom: 1px solid #E4E7EB;
+.task-content-header {
+    border-bottom: 1px solid #E4E7EB;
 }
 
 .task-content-header input[type="text"] {
@@ -184,9 +180,11 @@ input[type="checkbox"] {
 .item-wrap {
     overflow: auto;
 }
-.item-wrap::-webkit-scrollbar{
-  width: 0;
+
+.item-wrap::-webkit-scrollbar {
+    width: 0;
 }
+
 @-webkit-keyframes ttb {
     from {
         left: 100%;
@@ -210,5 +208,3 @@ input[type="checkbox"] {
         opacity: 1;
     }
 }
-
-

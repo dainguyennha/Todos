@@ -1,6 +1,8 @@
 export class Item {
   constructor(
-    public detail: string,
-    public checked: boolean
+    public id: number,
+    public description: string,
+    public checked: boolean,
+    public task_id: number
   ){}
 }
