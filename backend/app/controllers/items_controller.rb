@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
   def create
     @task = Task.find_by id: params[:id]
-    if @task.items.create description: params[:description]
+    @item = @task.items.create description: params[:description]
+    if @item
       if @task.updateStatus @task.items.where(checked: true).count, @task.items.count
-        render json: @task.items.last
+        render json: {item: @item.as_json, task: @task.as_json}
       end
     else
       render json: {status: false}
@@ -12,10 +13,10 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find_by id: params[:id]
-    if @item.update params[:checked], params[:detail]
+    if @item.update params[:checked], params[:description]
       @task = @item.task
       if @task.updateStatus @task.items.where(checked: true).count, @task.items.count
-        render json: @item
+        render json: { item: @item.as_json, task: @task.as_json }
       end
     end
   end
@@ -25,7 +26,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       @task = @item.task
       if @task.updateStatus @task.items.where(checked: true).count, @task.items.count
-        render json: {status: true, deletedItem: @item}
+        render json: {status: true, task: @task.as_json, deletedItem: @item.as_json}
       end
     else
       render json: {status: false}

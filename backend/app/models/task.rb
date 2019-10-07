@@ -1,9 +1,14 @@
 class Task < ApplicationRecord
   has_many :items, :dependent => :destroy
 
-  def updateTask title, description
-    update_attribute :title,  title
-    update_attribute :description, description
+
+  def as_json
+  # this example DOES NOT ignore the user's options
+    super({:only => [:id, :title, :description, :checked, :total_item, :checked_item]})
+  end
+
+  def addTask title
+    create(title: title).task_model
   end
 
   def updateStatus checked_item, total_item
