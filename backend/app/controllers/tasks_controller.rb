@@ -1,12 +1,12 @@
 class TasksController < ApplicationController
   def index
-    render json: Task.all
+    render json: Task.all.as_json
   end
 
   def show
     task = Task.find_by id: params[:id]
     items = task.items
-    render json: {task: task,items: items}
+    render json: { items:items.as_json, tasks: task.as_json}
   end
 
   def update
@@ -14,7 +14,7 @@ class TasksController < ApplicationController
     if @task.nil?
       render nothing: true, status: 404
     elsif @task.update_attributes task_params 
-      render json: @task 
+      render json: @task.as_json 
     else 
       render {}
     end 
@@ -23,7 +23,7 @@ class TasksController < ApplicationController
   def create
     newTask = Task.create title: params[:title]
     if newTask
-      render json: {status: true, data:newTask}
+      render json: {status: true, data: newTask.as_json}
     else
       render json: {status: false}
     end
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def destroy
     @task = Task.find_by id: params[:id]
     if @task.destroy
-      render json: {status: true, deletedTask: @task}
+      render json: {status: true, deletedTask: @task.as_json}
     else
       render json: {status: false}
     end
